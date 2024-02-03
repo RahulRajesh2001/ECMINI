@@ -1,31 +1,28 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext ,useState} from 'react';
 import { useDispatch, useSelector} from 'react-redux';
 import  {loginUser}  from '../../stateManagement/loginSlice';
 import { useNavigate } from "react-router-dom";
+import { LoginContext } from '../../App';
 
 const Login = () => {
+  const {handleLogin}  = useContext(LoginContext);
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  
 
   const [email, setEmail] = useState('rahulrj@gmail.com');
   const [password, setPassword] = useState('12345');
 
-  const token = useSelector((state) => state.login.token);
-
-
-
-  const handleSubmit = (e) => {
+  const handleSubmit =(e) => {
     e.preventDefault();
     try {
-      dispatch(loginUser({ email, password }));
-      navigate('/');
+      dispatch(loginUser({ email, password }))
+      handleLogin()
+      navigate('/')
     } catch (err) {
-      console.log(err);
+      console.log(err)
     }
   };
-
- 
-
 
   return (
     <div>
@@ -82,7 +79,7 @@ const Login = () => {
             </div>
 
             <div>
-              <button
+              <button 
                 type='submit'
                 className='flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600'
               >

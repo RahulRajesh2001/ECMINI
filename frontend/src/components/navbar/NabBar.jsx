@@ -1,6 +1,8 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { LoginContext } from '../../App'
 
 const NabBar = () => {
+  const {handleLogout}=useContext(LoginContext)
   return (
     <div>
       
@@ -34,7 +36,7 @@ const NabBar = () => {
         </div>
       </div>
       <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-      <a href="#" className="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Logout</a>
+      <a  onClick={()=>handleLogout()} className="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Logout</a>
       </div>
     </div>
   </div>
