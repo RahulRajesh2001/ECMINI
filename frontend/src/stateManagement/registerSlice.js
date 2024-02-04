@@ -6,7 +6,8 @@ const baseUrl = import.meta.env.VITE_BASEURL
 export const registerUser = createAsyncThunk(
   'register/registerUser',
   async ({ email, name, password }) => {
-    await axios.post(`${baseUrl}/api/v1/register`, { email, password, name })
+   const response= await axios.post(`${baseUrl}/api/v1/register`, { email, password, name })
+    return response.data.user;
   }
 )
 
